@@ -70,8 +70,10 @@ add_cpu() {
 
 int
 main(int argc, char *argv[]) {
-  if (vm_create() != HV_SUCCESS) {
-    fprintf(stderr, "error creating vm");
+  int error;
+  error = vm_create();
+  if (error != HV_SUCCESS) {
+    fprintf(stderr, "error creating vm %x", error);
     return 1;
   }
   if (vm_map() != HV_SUCCESS) {
